@@ -54,8 +54,8 @@ def rot_x_c(c):
 	return rot
 
 # vector
-def vec(x,y,z):
+def vec(x,y,z,x1):
 #	Define a vector
-	vec = np.array([[x, y, z]]).T 
+	vec = np.array([[x, y, z, x1]]).T 
 	return vec
 
