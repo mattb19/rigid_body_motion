@@ -3,53 +3,22 @@
 # import the required modules
 import math
 import numpy as np
+import rpm
 
-# first transformation
-def trans_x_a(a):
-	rot = np.array([1,0,0,a],
-				   [0,1,0,0],
-				   [0,0,1,0],
-				   [0,0,0,1])
-	return rot
+# define theta
+theta = math.pi/2
 
+# define vector
+v0 = rpm.vec(1,1,0)
 
-# second transformation
-def trans_y_b(b):
-	rot = np.array([1,0,0,0],
-				   [0,1,0,b],
-				   [0,0,1,0],
-				   [0,0,0,1])
-	return rot
+# create rotations
+Rx = rpm.rot_x(theta)
+Ry = rpm.rot_y(theta)
+Rz = rpm.rot_z(theta)
 
-# third transformation
-def trans_z_c(c):
-	rot = np.array([1,0,0,0],
-				   [0,1,0,0],
-				   [0,0,1,c],
-				   [0,0,0,1])
-	return rot
+# calculate total rotations
+R = np.matmul(Rx,Ry,Rz)
 
-# fourth transformation
-def rot_x_a(a):
-	rot = np.array([1,0,		  0,		   0],
-				   [0,math.cos(a),-math.sin(a),0],
-				   [0,math.sin(a),math.cos(a), 0],
-				   [0,0,          0,		   1])
-	return rot
-
-# fifth transformation
-def rot_y_b(b):
-	rot = np.array([math.cos(b), 0,math.sin(b), 0],
-				   [0,			 1,0,	 	    0],
-				   [-math.sin(b),0,math.cos(b), 0],
-				   [0,			 0,0,			1])
-	return rot
-
-# sixth transformation
-def rot_x_c(c):
-	rot = np.array([math.cos(c),-math.sin(c),0,0],
-				   [math.sin(c),math.cos(c), 0,0],
-				   [0,		    0,			 1,0],
-				   [0,			0,			 0,1])
-	return rot
-
+# calculate results
+v01 = R.dot(v0)
+print('The transformed vector (CURRENT FRAME) is:\n',v01)
