@@ -1,4 +1,3 @@
-# Here we write some functions that help us analayze the motions of a rigid body
 
 # import the required modules
 import math
