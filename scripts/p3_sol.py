@@ -13,10 +13,11 @@ def H_1():
 	Ty = p2.trans_y_b(-1.5)
 
 	# calculate total translation
-	T = np.matmul(Tx, Tz, Ty)
+	T = np.matmul(Tx, Tz)
+	T1 = np.matmul(T, Ty)
 
 	# calculate results of translation
-	v01 = T.dot(v0)
+	v01 = T1.dot(v0)
 	print('The transformed vector (CURRENT FRAME) is:\n',v01)
 
 def H_2():
@@ -29,10 +30,11 @@ def H_2():
 	Ty = p2.trans_y_b(0.5)
 
 	# calculate total translation
-	T = np.matmul(Tz, Tx, Ty)
+	T = np.matmul(Tz, Tx)
+	T1 = np.matmul(T, Ty)
 
 	# calculate results of translation
-	v01 = T.dot(v0)
+	v01 = T1.dot(v0)
 	print('The transformed vector (CURRENT FRAME) is:\n',v01)
 
 def H_3():
@@ -45,10 +47,11 @@ def H_3():
 	Ty = p2.trans_y_b(-1.5)
 
 	# calculate total translation
-	T = np.matmul(Ty, Tz, Tx)
+	T = np.matmul(Ty, Tz)
+	T1 = np.matmul(T, Tx)
 
 	# calculate results of translation
-	v01 = T.dot(v0)
+	v01 = T1.dot(v0)
 	print('The transformed vector (FIXED FRAME) is:\n',v01)
 
 def H_4():
@@ -61,10 +64,11 @@ def H_4():
 	Ty = p2.trans_y_b(0.5)
 
 	# calculate total translation
-	T = np.matmul(Ty, Tx, Tz)
+	T = np.matmul(Ty, Tx)
+	T1 = np.matmul(T, Tz)
 
 	# calculate results of translation
-	v01 = T.dot(v0)
+	v01 = T1.dot(v0)
 	print('The transformed vector (FIXED FRAME) is:\n',v01)
 
 def H_5():
@@ -81,10 +85,12 @@ def H_5():
 	Rx = p2.rot_x_c(-theta)
  
 	# calculate total transformation
-	TR = np.matmul(Rx, Tx, Tz)
+	TR = np.matmul(Rx, Tx)
+	TR1 = np.matmul(TR, Tz)
+	TR2 = np.matmul(TR1, Rx)
 	
 	# calculate results of transformation
-	v01 = TR.dot(v0)
+	v01 = TR2.dot(v0)
 	print('The transformed vector (CURRENT FRAME) is:\n',v01)
 
 
