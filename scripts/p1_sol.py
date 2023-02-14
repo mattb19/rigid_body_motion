@@ -16,8 +16,9 @@ Ry = rpm.rot_y(theta)
 Rz = rpm.rot_z(theta)
 
 # calculate total rotations
-R = np.matmul(Rx,Ry,Rz)
+R = np.matmul(Rx,Ry)
+R1 = np.matmul(R, Rz)
 
 # calculate results
-v01 = R.dot(v0)
+v01 = R1.dot(v0)
 print('The transformed vector (CURRENT FRAME) is:\n',v01)
